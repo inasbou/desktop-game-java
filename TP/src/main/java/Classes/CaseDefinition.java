@@ -2,7 +2,7 @@ package Classes;
 import java.util.Scanner ;
 public class CaseDefinition extends CaseQuestion 
 {
-      public final String color="bleu" ;
+      public final String color="blue" ;
      public String mot ;
      public String definition ;       
     public CaseDefinition( )
@@ -10,7 +10,7 @@ public class CaseDefinition extends CaseQuestion
         
     }
 
-    public void  PointeCase ( )
+    public void  PointeCase ( Joueur j)
     { 
         DonnerQuestion();
         if (tester()== true){
@@ -30,4 +30,10 @@ public class CaseDefinition extends CaseQuestion
     if (reponse == mot ){
         return true ;
        }else return false ;
-}}
+}
+
+    @Override
+    public String getColor() {
+        return this.color;
+    }
+}

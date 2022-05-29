@@ -7,7 +7,8 @@ package Classes;
  */
 public abstract class Case
 {
-    
-    public abstract void PointeCase() ;
+
+    public abstract void PointeCase(Joueur j) ;
+    public abstract String getColor() ;
     
 }

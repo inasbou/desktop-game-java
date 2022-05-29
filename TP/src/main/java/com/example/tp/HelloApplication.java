@@ -1,5 +1,7 @@
 package com.example.tp;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -24,8 +26,16 @@ public class HelloApplication extends Application {
         int count=0;
         for (int i=0;i<10;i++) {
             for (int j=0;j<10;j++) {
+                Button btn = new Button(Integer.toString(count));
+                Case c=plateau_code[count] ;
+
+                btn.setOnAction(new EventHandler<ActionEvent>(){
+                    public void handle(ActionEvent actionEvent) {
+                        c.PointeCase(partie.getJoueur());
+                    }});
+                btn.setStyle("-fx-background-color: "+plateau_code[count].getColor());
+                plateau.add(btn, i, j);
                 count++;
-                plateau.add(new Button(), i, j);
 
             }
         }
