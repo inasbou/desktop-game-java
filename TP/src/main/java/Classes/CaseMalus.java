@@ -2,11 +2,12 @@ package Classes;
 public class CaseMalus  extends Case 
  {
     // instance variables - replace the example below with your own
-    public static final String color="orange" ;
+    public static final String color="red" ;
 
     
-    public CaseMalus()
+    public CaseMalus(int num)
     {
+        this.num=num;
     }
     public void PointeCase (Joueur j)
     {
@@ -18,5 +19,8 @@ public class CaseMalus  extends Case
     public String getColor() {
        return this.color;
     }
-    
+     public int getNum ()
+     {
+         return this.num;
+     }
 }

@@ -3,22 +3,26 @@ package Classes;
 public class CaseDepart extends Case 
 {
     public final String color="yellow";
-    public final int num=0 ;
+
 
     
-    public CaseDepart()
-    {}
+    public CaseDepart(int num)
+    {
+        this.num=num;
+    }
 
     
     public void PointeCase ( Joueur j)
-    {    /**int num =0 ; // on vachanger num vers la position de joueur 
-        if( num==this.num){
-            return true;
-        }else return false ;*/
+    {
+        j.setScore(0);
     }
 
     @Override
     public String getColor() {
         return this.color;
+    }
+    public int getNum ()
+    {
+        return this.num;
     }
 }

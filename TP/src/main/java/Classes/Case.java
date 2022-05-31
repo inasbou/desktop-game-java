@@ -10,5 +10,6 @@ public abstract class Case
 
     public abstract void PointeCase(Joueur j) ;
     public abstract String getColor() ;
-    
+    public abstract int getNum() ;
+    public int num;
 }

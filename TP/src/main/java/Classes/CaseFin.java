@@ -3,11 +3,13 @@ package Classes;
 public class CaseFin extends Case 
 {
     public final String color="black";
-    public final int num=100 ;
+
 
     
-    public CaseFin()
-    {}
+    public CaseFin(int num)
+    {
+        this.num=num;
+    }
 
     
     public void PointeCase ( Joueur j)
@@ -20,5 +22,9 @@ public class CaseFin extends Case
     @Override
     public String getColor() {
         return this.color;
+    }
+    public int getNum ()
+    {
+        return this.num;
     }
 }

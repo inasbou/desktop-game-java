@@ -1,39 +1,121 @@
 package Classes;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.scene.text.Text;
+
 import java.util.Scanner ;
-public class CaseDefinition extends CaseQuestion 
+public class CaseDefinition extends CaseQuestion
 {
-      public final String color="blue" ;
-     public String mot ;
-     public String definition ;       
-    public CaseDefinition( )
+    public final String color="blue" ; //private or not?
+    private String mot ;
+    private String definition ;
+    public static int qstpos=0;
+
+
+    public CaseDefinition( int num)
     {
-        
+        this.num=num;
+        qstpos = (qstpos + 1) % 8;
+        String keys[] = new String[]{"Walk", "Eat", "Teacher", "Cat", "Sing", "Study", "Puppy", "Run"};
+
+        this.mot=keys[qstpos];
+        this.definition= Jeu.mots_def.get(mot);
+
     }
 
-    public void  PointeCase ( Joueur j)
-    { 
-        DonnerQuestion();
-        if (tester()== true){
-            //Deplecer(4);
-            //modifScore(20);
-    }else   {} //modifScore(-10)
+    public void  PointeCase ( Joueur j) {
+
+        Stage popupwindow = new Stage();
+        popupwindow.initModality(Modality.APPLICATION_MODAL);
+        popupwindow.setTitle("Fenêtre de Définition");
+
+        //affichage d'explication
+        Text explication = new Text();
+        explication.setText("Entrer la mot dont la définition est la suivante :");
+
+
+        //affichage de la definition
+        Text definition = new Text();
+        definition.setText(this.definition);
+
+        //
+        TextField rep = new TextField();
+        rep.setPromptText("Entrer votre réponse");
+        //rep.setPrefColumnCount((Jeu.mots_def.get("Walk")).length());// !!!!!!!!!!!!!!!!
+
+        Text resultat = new Text();
+        Button valid = new Button("valider");
+        Button close = new Button("Press me!");
+        valid.setOnAction(new EventHandler<ActionEvent>() {
+            /**
+             *
+             */
+            @Override
+            public void handle(ActionEvent event) {
+                String reponse = rep.getText();
+
+                if (tester(reponse) == true) {
+                    resultat.setText("reponse correcte");
+                    resultat.setFill(Color.GREEN);
+                    j.deplacer(4);
+                    j.modifScore(20);
+
+                } else {
+                    resultat.setText("reponse non correcte");
+                    resultat.setFill(Color.RED);
+                    j.modifScore(-10);
+                }
             }
-    public String DonnerQuestion(){
-        System.out.println("donner le mot de la definition suivant"+ definition ) ;
-       Scanner sc = new Scanner(System.in);
-        System.out.println("Veuillez saisir votre réponse :");
-           String reponse= sc.next();
-           return reponse ;
-    }
-    public boolean  tester(){
-         String reponse = DonnerQuestion (); 
-    if (reponse == mot ){
-        return true ;
-       }else return false ;
-}
+        });
+        /** */
 
-    @Override
-    public String getColor() {
+        close.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent actionEvent) {
+                popupwindow.close();
+            }
+        });
+
+        HBox hbox = new HBox(rep, valid);
+        VBox container = new VBox(explication, definition, hbox, resultat, close);
+
+
+
+        Scene sceneDef= new Scene(container, 600, 600);
+        popupwindow.setScene(sceneDef);
+
+        popupwindow.showAndWait();
+
+    }
+
+        public boolean tester(String reponse) {
+        System.out.println(mot);
+        System.out.println(definition);
+            System.out.println(reponse);
+        if (reponse.compareTo(this.mot)==0){
+            System.out.println("true");
+            return true ;
+        }else {
+            System.out.println("false");
+            return false ;
+        }
+    }
+
+        @Override
+        public String getColor() {
         return this.color;
     }
-}
+
+
+    public int getNum ()
+    {
+        return this.num;
+    }
+    }

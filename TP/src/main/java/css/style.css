@@ -1,0 +1,14 @@
+.hbox {
+    -fx-background-color: #2f4f4f;
+    -fx-padding: 15;
+    -fx-spacing: 10;
+    -fx-color: "white";
+    -fx-max-height: 35;
+}
+
+.entete {
+    -fx-background-color: "pink";
+    -fx-padding: 10 25;
+    -fx-spacing: 45;
+
+}

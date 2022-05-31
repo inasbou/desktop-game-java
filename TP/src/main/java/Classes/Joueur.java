@@ -51,21 +51,20 @@ public class Joueur
     }
 
     
-    public void deplacer(int depl)
+    public int deplacer(int depl)
     {
         // put your code here
         int nv_pos= this.position + depl;
         if (nv_pos>100){
-            int nb_recul=100-(this.position+depl-100);
+            int nb_recul=nv_pos-100;
             this.position-=nb_recul;
         } else if (nv_pos==100){
             //appelle fin partie
         }else{
             this.position=nv_pos;
         }
+
+        return position;
     }
     
-    public int lancer() {
-        return De.lancerDe()+De.lancerDe();
-    }
 }

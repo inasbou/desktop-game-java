@@ -21,14 +21,14 @@ public class Jeu
     public Jeu()
     {
         //init img_mots
-        mots_imgs.put("Walk", "assets/walk.jpg");
-        mots_imgs.put("Eat", "assets/eat.jpg");
-        mots_imgs.put("Teacher", "assets/teacher.jpg");
-        mots_imgs.put("Cat", "assets/cat.jpg");
-        mots_imgs.put("Sing", "assets/sing.png");
-        mots_imgs.put("Study", "assets/study.jpg");
-        mots_imgs.put("Puppy", "assets/puppy.jpg");
-        mots_imgs.put("Run", "assets/run.jpg");
+        mots_imgs.put("Walk", "src/main/java/assets/walk.jpg");
+        mots_imgs.put("Eat", "src/main/java/assets/eat.jpg");
+        mots_imgs.put("Teacher", "src/main/java/assets/teacher.jpg");
+        mots_imgs.put("Cat", "src/main/java/assets/cat.jpg");
+        mots_imgs.put("Sing", "src/main/java/assets/sing.png");
+        mots_imgs.put("Study", "src/main/java/assets/study.jpg");
+        mots_imgs.put("Puppy", "src/main/java/assets/puppy.jpg");
+        mots_imgs.put("Run", "src/main/java/assets/run.jpg");
         //init def_mots
         mots_def.put("Walk", "Marcher");
         mots_def.put("Eat", "Manger");

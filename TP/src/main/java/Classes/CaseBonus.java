@@ -6,8 +6,9 @@ public class CaseBonus extends Case
     public static final String color="green" ;
 
     
-    public CaseBonus()
+    public CaseBonus(int num)
     {
+        this.num=num;
     }
     public void PointeCase (Joueur j)
     {
@@ -18,5 +19,8 @@ public class CaseBonus extends Case
     {
        return this.color;
     }
-    
+    public int getNum ()
+     {
+         return this.num;
+     }
 }
