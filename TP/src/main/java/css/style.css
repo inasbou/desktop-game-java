@@ -1,14 +1,26 @@
-.hbox {
-    -fx-background-color: #2f4f4f;
-    -fx-padding: 15;
-    -fx-spacing: 10;
-    -fx-color: "white";
-    -fx-max-height: 35;
-}
+    .hbox {
+        -fx-padding: 0;
+        -fx-spacing: 0;
+        -fx-min-height: 55;
+        -fx-min-width: 110;
+    }
 
-.entete {
-    -fx-background-color: "pink";
-    -fx-padding: 10 25;
-    -fx-spacing: 45;
+    .entete {
+        -fx-background-color: "pink";
+        -fx-padding: 10 25;
+        -fx-spacing: 45;
+    }
 
-}
+
+    .form_login {
+        -fx-padding: 15 10;
+        -fx-spacing: 10;
+        -fx-color: "black";
+        -fx-font-size: 20px;
+        -fx-background-color: "pink";
+    }
+
+    .fenetre_case_image {
+        -fx-padding:25;
+        -fx-font-size: 30px;
+    }

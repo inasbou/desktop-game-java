@@ -1,5 +1,18 @@
 package Classes;
 
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.lang.reflect.Array;
 import  java.util.concurrent.ThreadLocalRandom;
 import java.util.Arrays;
 
@@ -83,12 +96,69 @@ public class Partie
     }
 
     
-    public void TerminerPartie(int y)
-    {
+    public void TerminerPartie() throws Exception {
         // comparer le score actuelle du joueur avec son meilleur score
-        if (joueur.getScore()>joueur.meilleurScore) {
-            Jeu.joueurs_meilleur_score.put(joueur.getNom(), joueur.getScore());
+
+        // 1- checrcher le nom du jueur dans le fichier et obtenir son meilleur score :
+        // ----1/ LES BUFFERS
+        FileReader fr = new FileReader("joueurs_meilleur_score.txt");
+        BufferedReader bf = new BufferedReader(fr);
+
+        //---2/ VARIABLES UTILES
+        String s;
+        String[] mailleur_joueur= {"0","0"}; //[nom_joueur , meilleur_score] ce tab contient le meilleur joueur/score dans le jeu
+        String fichier=""; //contient le contenu du nouveau fichier
+        String[] mots; //contient joueur + meilleur score lu a partir de l'anien fichier
+
+        //AFFICHAGE À LA FIN DE LA PARTIE
+        Stage popupwindow=new Stage();
+        popupwindow.initModality(Modality.APPLICATION_MODAL);
+        popupwindow.setTitle("Fin de partie!");
+        VBox record_personnel=null;
+
+        boolean trouv=false;
+
+        while ((s=bf.readLine())!=null) {
+
+            mots=s.split(",");
+            if (Integer.parseInt(mots[1]) > Integer.parseInt(mailleur_joueur[1])) {
+                mailleur_joueur[0]=mots[0];
+                mailleur_joueur[1]=mots[1];
+            } //sauvegarde du meilleur joueur ~~~~FIN
+
+            if (mots[0].compareTo(joueur.getNom())==0) {
+                System.out.println("on va chenger le score ");
+                if (joueur.getScore()> Integer.parseInt(mots[1])) {
+                    mots[1]=Integer.toString(joueur.getScore());
+                    record_personnel = new VBox(new Text("Félicitations!! vous avez dépasser votre meilleur score!"),new Text("Votre meilleur score: "+mots[1]),new Text("votre score actuelle: "+joueur.getScore()));
+                     } else {
+                    record_personnel = new VBox(new Text("Votre meilleur score: "+mots[1]),new Text("votre score actuelle: "+joueur.getScore()));
+                }
+            }
+            fichier=fichier+mots[0]+","+mots[1]+"\n";
         }
+
+        fr.close();
+        Text meilleur= new Text("");
+        Text resultat= new Text();
+        VBox abattu = new VBox(resultat,meilleur);
+        if ((mailleur_joueur[0].compareTo(joueur.getNom()))==0){
+            resultat.setText("u're the king bruh!");
+        }
+        meilleur.setText("the king is: "+mailleur_joueur[0]+"\n score: "+mailleur_joueur[1]);
+        FileWriter f = new FileWriter("joueurs_meilleur_score.txt",false);
+        f.write(fichier);
+        f.close();
+        VBox container = new VBox(record_personnel,abattu);
+        Scene scene1= new Scene(container, 600, 600);
+        popupwindow.setScene(scene1);
+
+        popupwindow.showAndWait();
+
+
+        //if (joueur.getScore()>joueur.meilleurScore) {
+        //    Jeu.joueurs_meilleur_score.put(joueur.getNom(), joueur.getScore());
+        //}
     }
     
     public void PauserPartie(int y)

@@ -59,6 +59,7 @@ public class CaseImage extends CaseQuestion
 
         //container of btns + title
         VBox container = new VBox();
+        container.getStyleClass().add("fenetre_case_image");
         container.getChildren().add( new Text( this.mot));
         container.getChildren().add( btns_grid);
 
@@ -72,10 +73,9 @@ public class CaseImage extends CaseQuestion
 
 
                 Button btn= new Button("",new ImageView(imgt));
-
+                btn.setStyle("-fx-padding:0;");
                 btns_grid.add(btn, i, k);
 
-                System.out.println(img);
 
                 //event handler on selecting an image
                 btn.setOnAction(new EventHandler<ActionEvent>(){
@@ -99,7 +99,7 @@ public class CaseImage extends CaseQuestion
         btns_grid.setCenterShape(true);
         Scene scene1= new Scene(container, 600, 600);
         popupwindow.setScene(scene1);
-
+        scene1.getStylesheets().add("file:src/main/java/css/style.css");
         popupwindow.showAndWait();
 
 

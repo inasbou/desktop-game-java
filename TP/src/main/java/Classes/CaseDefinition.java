@@ -1,6 +1,7 @@
 package Classes;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -53,7 +54,7 @@ public class CaseDefinition extends CaseQuestion
 
         Text resultat = new Text();
         Button valid = new Button("valider");
-        Button close = new Button("Press me!");
+        Button close = new Button("Sortir");
         valid.setOnAction(new EventHandler<ActionEvent>() {
             /**
              *
@@ -73,6 +74,7 @@ public class CaseDefinition extends CaseQuestion
                     resultat.setFill(Color.RED);
                     j.modifScore(-10);
                 }
+
             }
         });
         /** */
@@ -85,10 +87,12 @@ public class CaseDefinition extends CaseQuestion
 
         HBox hbox = new HBox(rep, valid);
         VBox container = new VBox(explication, definition, hbox, resultat, close);
+        hbox.setAlignment(Pos.CENTER);
+        container.setSpacing(10);
+        container.setAlignment(Pos.CENTER);
 
 
-
-        Scene sceneDef= new Scene(container, 600, 600);
+        Scene sceneDef= new Scene(container, 600, 300);
         popupwindow.setScene(sceneDef);
 
         popupwindow.showAndWait();
@@ -96,14 +100,9 @@ public class CaseDefinition extends CaseQuestion
     }
 
         public boolean tester(String reponse) {
-        System.out.println(mot);
-        System.out.println(definition);
-            System.out.println(reponse);
-        if (reponse.compareTo(this.mot)==0){
-            System.out.println("true");
+        if ((reponse.toLowerCase()).compareTo(this.mot)==0){
             return true ;
         }else {
-            System.out.println("false");
             return false ;
         }
     }

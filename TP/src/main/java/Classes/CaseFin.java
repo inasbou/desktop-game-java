@@ -13,10 +13,7 @@ public class CaseFin extends Case
 
     
     public void PointeCase ( Joueur j)
-    {   /*   int num =100 ; // on vachanger num vers la position de joueur 
-        if( num==this.num){
-            return true;
-        }else return false ;*/
+    {
     }
 
     @Override

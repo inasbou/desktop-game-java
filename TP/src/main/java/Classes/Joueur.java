@@ -5,8 +5,7 @@ public class Joueur
     private String nom;
     private int score=0;
     private int position=0; //indice dans la table partie
-    public final int meilleurScore=0;
-    
+
 
     /**
      * Constructor for objects of class Joueur

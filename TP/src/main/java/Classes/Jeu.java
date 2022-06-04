@@ -1,4 +1,7 @@
 package Classes;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.*;
 /**
  * Write a description of class Jeu here.
@@ -30,32 +33,53 @@ public class Jeu
         mots_imgs.put("Puppy", "src/main/java/assets/puppy.jpg");
         mots_imgs.put("Run", "src/main/java/assets/run.jpg");
         //init def_mots
-        mots_def.put("Walk", "Marcher");
-        mots_def.put("Eat", "Manger");
-        mots_def.put("Teacher", "Enseignant");
-        mots_def.put("Cat", "Chat");
-        mots_def.put("Sing", "Chanter");
-        mots_def.put("Study", "Etudier");
-        mots_def.put("Puppy", "Chien");
-        mots_def.put("Run", "Courrir");
+        mots_def.put("Walk", "marcher");
+        mots_def.put("Eat", "manger");
+        mots_def.put("Teacher", "enseignant");
+        mots_def.put("Cat", "chat");
+        mots_def.put("Sing", "chanter");
+        mots_def.put("Study", "etudier");
+        mots_def.put("Puppy", "chien");
+        mots_def.put("Run", "courrir");
     }
 
     
     
-    public Partie LancerPartie()
+    public Partie LancerPartie(String nom)
     {
         // put your code here
         // la variable j: represente le joueur authentifié
-        Joueur j= new Joueur("Latif", 0,0);
+        Joueur j= new Joueur(nom, 0,0);
         Partie p= new Partie(j);
         return p;
         //Case c= p.plateau[0];
     }
     
-    public void entrerJoueur () {
-        //obtenir le nom du joueur d'apres un formulaire
-        //si le joueur existe on le fait entrer normalement
-        //si le joueur n'existe pas on va le créer /l'ajouter à la map)
-        //cette methode appelle lancerPartie
+    public void entrerJoueur (String nom) throws  Exception {
+        FileReader fr = new FileReader("joueurs_meilleur_score.txt");
+        BufferedReader bf = new BufferedReader(fr);
+        String s;
+        String[] mots;
+
+        boolean trouv=false;
+
+        while ((s=bf.readLine())!=null && (trouv==false)) {
+
+            mots=s.split(",");
+            for (String mot : mots) {
+                System.out.println(mot);
+                if (mot.compareTo(nom)==0) {
+                    trouv=true;
+                }
+            }
+        }
+
+        fr.close();
+
+        if (trouv==false) {
+            FileWriter f = new FileWriter("joueurs_meilleur_score.txt",true);
+            f.write(nom+","+"0"+"\n");
+            f.close();
+        }
     }
 }
